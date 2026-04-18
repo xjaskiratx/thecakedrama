@@ -401,7 +401,7 @@ function App() {
   function buildOrderMessage(items) {
     const lines = [];
     lines.push('✨ *New Order for The Cake Dramaa* ✨');
-    lines.push('- - - - - - - - - - - - - - -');
+    lines.push('· · · · · · · · · · · · · · ·');
     items.forEach((item, idx) => {
       lines.push(`${idx + 1}. *${item.name}* (x${item.qty})`);
       const details = [];
