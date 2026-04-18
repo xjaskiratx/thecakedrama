@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 
 const SUBTITLE = 'FROM OUR OVEN, TO YOUR HEART';
-const INSTAGRAM_PLACEHOLDER = 'xjaskiratx';
+const INSTAGRAM_PLACEHOLDER = 'thecakedramaa';
 
 function formatPriceValue(value) {
   return `Rs. ${value}`;
@@ -391,19 +391,25 @@ function App() {
 
   function buildOrderMessage(items) {
     const lines = [];
-    lines.push('Hi! I would like to place an order:');
-    lines.push('');
+    lines.push('✨ *New Order from The Cake Dramaa* ✨');
+    lines.push('----------------------------------');
     items.forEach((item, idx) => {
-      const parts = [];
-      parts.push(`${idx + 1}. ${item.name} x${item.qty}`);
-      if (item.priceLabel || item.priceValue != null) parts.push(`Price: ${item.priceLabel ? item.priceLabel + ' - ' : ''}${item.priceValue != null ? formatPriceValue(item.priceValue) : ''}`.trim());
-      if (item.flourId) parts.push(`Flour: ${item.flourId === 'wholewheat' ? 'Wholewheat' : 'Regular'}`);
-      if (item.flavourIds?.length) parts.push(`Options: ${item.flavourIds.join(', ')}`);
-      if (item.note?.trim()) parts.push(`Note: ${item.note.trim()}`);
-      lines.push(parts.join(' | '));
+      lines.push(`${idx + 1}. *${item.name}* (x${item.qty})`);
+      const details = [];
+      if (item.priceLabel || item.priceValue != null) {
+        details.push(`${item.priceLabel || 'Option'}: ${item.priceValue != null ? formatPriceValue(item.priceValue) : ''}`);
+      }
+      if (item.flourId) details.push(`Flour: ${item.flourId === 'wholewheat' ? 'Wholewheat' : 'Regular'}`);
+      if (item.flavourIds?.length) details.push(`Flavours: ${item.flavourIds.join(', ')}`);
+      
+      if (details.length) lines.push(`   └ ${details.join(' | ')}`);
+      if (item.note?.trim()) lines.push(`   📝 Note: "${item.note.trim()}"`);
+      lines.push('');
     });
+    lines.push('----------------------------------');
+    lines.push(`Total Items: ${items.reduce((sum, x) => sum + x.qty, 0)}`);
     lines.push('');
-    lines.push(`Total items: ${items.reduce((sum, x) => sum + x.qty, 0)}`);
+    lines.push('Please confirm once you receive this! Thank you! 🍰');
     return lines.join('\n');
   }
 
