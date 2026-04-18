@@ -78,13 +78,9 @@ const MENU = [
   { id: 29, name: 'Triple Chocolate Brownie', category: 'Brownies', image: '/triple_chocolate_brownie.webp', priceOptions: [{ id: '500g', label: '500g', price: 500 }] },
   { id: 30, name: 'Brownie Bites', category: 'Brownies', image: '/NutellaBrownieBites.webp', priceOptions: [{ id: 'single', label: 'Pack', price: 280 }], flavourOptions: [{ id: 'nutella', label: 'Nutella' }, { id: 'biscoff', label: 'Biscoff' }, { id: 'dark', label: 'Dark chocolate' }, { id: 'white', label: 'White chocolate' }], optionsLabel: 'Toppings (optional)', optionsRequired: false, allowCustomizationNote: true, customizationPlaceholder: 'Anything else? (extra toppings, packing note, etc.)' },
   { id: 31, name: 'Brownie w/ Almonds', category: 'Brownies', image: '/BrownieWithAlmonds.webp', priceOptions: [{ id: '500g', label: '500g', price: 500 }, { id: '1kg', label: '1kg', price: 800 }] },
-
-  // Cookies
-  { id: 32, name: 'Choco Chip Cookies', category: 'Cookies', image: '/ChocoChipCookies.webp', priceOptions: [{ id: 'pack', label: 'Pack of 6', price: 350 }] },
-  { id: 33, name: 'Granola Cookies', category: 'Cookies', image: '/GranolaCookies.webp', priceOptions: [{ id: 'pack', label: 'Pack of 6', price: 350 }] },
 ];
 
-const FILTERS = ['All', 'Cheesecakes', 'Tea time cakes', 'Brownies', 'Cookies'];
+const FILTERS = ['All', 'Cheesecakes', 'Tea time cakes', 'Brownies'];
 
 function App() {
   const [activeFilter, setActiveFilter] = useState(null); // Instant UI updates
