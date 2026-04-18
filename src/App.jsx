@@ -401,7 +401,6 @@ function App() {
       if (details.length) lines.push(`   └ ${details.join(' | ')}`);
       if (item.note?.trim()) lines.push(`   📝 Note: "${item.note.trim()}"`);
     });
-    lines.push('- - - - - - - - - - - - - - -');
     lines.push(`Total Items: ${items.reduce((sum, x) => sum + x.qty, 0)}`);
     lines.push('');
     lines.push('Please confirm once you receive this! Thank you! 🍰');
