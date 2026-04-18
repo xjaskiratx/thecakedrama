@@ -310,7 +310,7 @@ function App() {
       });
       return next;
     });
-    showToast('Added to bag');
+    showToast(`Added ${product.name} to your bag! 🍰`);
   }
 
   function onCardAddClick(e, product) {
