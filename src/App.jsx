@@ -102,6 +102,7 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   const [removeConfirmKey, setRemoveConfirmKey] = useState(null);
   const [toastMessage, setToastMessage] = useState('');
+  const [isToastExiting, setIsToastExiting] = useState(false);
   const toastTimerRef = useRef(null);
   const [redirectCountdown, setRedirectCountdown] = useState(null);
   const redirectTimerRef = useRef(null);
@@ -193,9 +194,17 @@ function App() {
   const cartCount = useMemo(() => cartItems.reduce((sum, item) => sum + item.qty, 0), [cartItems]);
 
   function showToast(message) {
-    setToastMessage(message);
     if (toastTimerRef.current) window.clearTimeout(toastTimerRef.current);
-    toastTimerRef.current = window.setTimeout(() => setToastMessage(''), 2200);
+    setIsToastExiting(false);
+    setToastMessage(message);
+
+    toastTimerRef.current = window.setTimeout(() => {
+      setIsToastExiting(true);
+      toastTimerRef.current = window.setTimeout(() => {
+        setToastMessage('');
+        setIsToastExiting(false);
+      }, 300); // Wait for fade-out animation
+    }, 2200);
   }
 
   function transitionTo(next) {
@@ -775,7 +784,7 @@ function App() {
       ) : null}
 
       {toastMessage ? (
-        <div className="toast" role="status" aria-live="polite">
+        <div className={`toast ${isToastExiting ? 'exit' : ''}`} role="status" aria-live="polite">
           {toastMessage}
         </div>
       ) : null}
