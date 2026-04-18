@@ -415,11 +415,15 @@ function App() {
     const message = buildOrderMessage(cartItems);
     try {
       await navigator.clipboard.writeText(message);
-      showToast('Order copied. Paste it on Instagram DM.');
+      showToast('Order copied! Opening Instagram in 3s...');
+      
+      // Delay redirect by 3s so user sees the instruction
+      setTimeout(() => {
+        window.open(`https://www.instagram.com/${INSTAGRAM_PLACEHOLDER}/`, '_blank', 'noopener,noreferrer');
+      }, 3000);
     } catch {
       showToast('Copy failed. Select and copy manually.');
     }
-    window.open(`https://www.instagram.com/${INSTAGRAM_PLACEHOLDER}/`, '_blank', 'noopener,noreferrer');
   }
 
   useEffect(() => {
