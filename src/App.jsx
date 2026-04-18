@@ -365,6 +365,7 @@ function App() {
       flourId: activeProduct.flourOptions?.length ? selectedFlourId : null,
       note: activeProduct.allowCustomizationNote ? customizationNote : '',
     });
+    closeProduct();
   }
 
   function incrementQty(key) {
