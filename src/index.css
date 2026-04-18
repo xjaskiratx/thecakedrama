@@ -916,6 +916,38 @@ header:hover {
     color: white;
 }
 
+/* Redirect Modal Specifics */
+.redirect-modal {
+    text-align: center;
+    padding: 32px 24px;
+}
+
+.redirect-icon {
+    font-size: 3rem;
+    margin-bottom: 12px;
+}
+
+.modal-text {
+    font-size: 1.25rem;
+    margin-top: 8px;
+    color: #444;
+}
+
+.modal-hint {
+    font-size: 1rem;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(152, 69, 125, 0.1);
+    color: var(--primary-color);
+    line-height: 1.4;
+    font-family: 'Afacad-SemiBold', sans-serif;
+}
+
+.redirect-modal .modal-btn {
+    margin-top: 24px;
+    width: 100%;
+}
+
 @media (prefers-reduced-motion: reduce) {
 
     .product-grid-scroll,

@@ -103,6 +103,8 @@ function App() {
   const [removeConfirmKey, setRemoveConfirmKey] = useState(null);
   const [toastMessage, setToastMessage] = useState('');
   const toastTimerRef = useRef(null);
+  const [redirectCountdown, setRedirectCountdown] = useState(null);
+  const redirectTimerRef = useRef(null);
 
   const [headerCookies, setHeaderCookies] = useState([
     { id: 1, left: '1%', top: '-7%', width: '22px', height: '22px', transform: 'rotate(15deg)' },
@@ -415,12 +417,22 @@ function App() {
     const message = buildOrderMessage(cartItems);
     try {
       await navigator.clipboard.writeText(message);
-      showToast('Order copied! Opening Instagram in 3s...');
       
-      // Delay redirect by 3s so user sees the instruction
-      setTimeout(() => {
-        window.open(`https://www.instagram.com/${INSTAGRAM_PLACEHOLDER}/`, '_blank', 'noopener,noreferrer');
-      }, 3000);
+      // Start countdown
+      setRedirectCountdown(3);
+      if (redirectTimerRef.current) clearInterval(redirectTimerRef.current);
+      
+      redirectTimerRef.current = setInterval(() => {
+        setRedirectCountdown(prev => {
+          if (prev <= 1) {
+            clearInterval(redirectTimerRef.current);
+            window.open(`https://www.instagram.com/${INSTAGRAM_PLACEHOLDER}/`, '_blank', 'noopener,noreferrer');
+            return null;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+
     } catch {
       showToast('Copy failed. Select and copy manually.');
     }
@@ -742,6 +754,21 @@ function App() {
               <button type="button" className="modal-btn" onClick={() => setRemoveConfirmKey(null)}>Cancel</button>
               <button type="button" className="modal-btn danger" onClick={() => removeItem(removeConfirmKey)}>Remove</button>
             </div>
+          </div>
+        </div>
+      ) : null}
+
+      {redirectCountdown !== null ? (
+        <div className="modal-backdrop" role="dialog" aria-modal="true">
+          <div className="modal redirect-modal">
+            <div className="redirect-icon">✨</div>
+            <div className="modal-title">Order Copied!</div>
+            <p className="modal-text">Opening Instagram in <strong>{redirectCountdown}s</strong>...</p>
+            <p className="modal-hint">Paste the message in our DMs to confirm your order! 🍰</p>
+            <button type="button" className="modal-btn" onClick={() => {
+              clearInterval(redirectTimerRef.current);
+              setRedirectCountdown(null);
+            }}>Cancel</button>
           </div>
         </div>
       ) : null}
