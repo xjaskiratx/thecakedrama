@@ -129,7 +129,7 @@ function App() {
       id: Date.now(),
       left: `${newX}%`,
       top: `${newY}%`,
-      width: '24px', 
+      width: '24px',
       height: '24px',
       transform: `rotate(${(headerCookies.length * 45) % 360}deg)`
     };
@@ -159,9 +159,9 @@ function App() {
       const xPct = ((clientX - rect.left) / rect.width) * 100;
       const yPct = ((clientY - rect.top) / rect.height) * 100;
 
-      setHeaderCookies(prev => prev.map(c => 
-        c.id === draggingId 
-          ? { ...c, left: `${xPct}%`, top: `${yPct}%`, transition: 'none' } 
+      setHeaderCookies(prev => prev.map(c =>
+        c.id === draggingId
+          ? { ...c, left: `${xPct}%`, top: `${yPct}%`, transition: 'none' }
           : c
       ));
       dragRafRef.current = null;
@@ -387,8 +387,8 @@ function App() {
 
   function buildOrderMessage(items) {
     const lines = [];
-    lines.push('✨ *New Order from The Cake Dramaa* ✨');
-    lines.push('----------------------------------');
+    lines.push('✨ *New Order for The Cake Dramaa* ✨');
+    lines.push('--------------------------');
     items.forEach((item, idx) => {
       lines.push(`${idx + 1}. *${item.name}* (x${item.qty})`);
       const details = [];
@@ -400,9 +400,8 @@ function App() {
       
       if (details.length) lines.push(`   └ ${details.join(' | ')}`);
       if (item.note?.trim()) lines.push(`   📝 Note: "${item.note.trim()}"`);
-      lines.push('');
     });
-    lines.push('----------------------------------');
+    lines.push('--------------------------');
     lines.push(`Total Items: ${items.reduce((sum, x) => sum + x.qty, 0)}`);
     lines.push('');
     lines.push('Please confirm once you receive this! Thank you! 🍰');
