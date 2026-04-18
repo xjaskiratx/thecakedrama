@@ -260,7 +260,7 @@ function App() {
     if (prompt) showToast(prompt);
 
     // Simple navigation: treat detail as a separate "page" in history.
-    window.history.pushState({ page: 'detail', productId: product.id }, '', '#product');
+    window.history.pushState({ page: 'detail', productId: product.id }, '', window.location.pathname);
     transitionTo({ page: 'detail', productId: product.id });
   }
 
@@ -271,11 +271,11 @@ function App() {
       return;
     }
     transitionTo({ page: 'grid' });
-    window.history.replaceState({ page: 'grid' }, '', '#');
+    window.history.replaceState({ page: 'grid' }, '', window.location.pathname);
   }
 
   function openCheckout() {
-    window.history.pushState({ page: 'checkout' }, '', '#checkout');
+    window.history.pushState({ page: 'checkout' }, '', window.location.pathname);
     transitionTo({ page: 'checkout' });
   }
 
@@ -285,7 +285,7 @@ function App() {
       return;
     }
     transitionTo({ page: 'grid' });
-    window.history.replaceState({ page: 'grid' }, '', '#');
+    window.history.replaceState({ page: 'grid' }, '', window.location.pathname);
   }
 
   function lineItemKey({ productId, priceId, flavourIds, flourId, note }) {
@@ -378,7 +378,7 @@ function App() {
     
     // Force navigation to home screen and clean up the history entry
     transitionTo({ page: 'grid' });
-    window.history.replaceState({ page: 'grid' }, '', '#');
+    window.history.replaceState({ page: 'grid' }, '', window.location.pathname);
   }
 
   function incrementQty(key) {
@@ -460,7 +460,7 @@ function App() {
   useEffect(() => {
     // Initialize navigation state and support browser back/forward.
     if (!window.history.state?.page) {
-      window.history.replaceState({ page: 'grid' }, '', '#');
+      window.history.replaceState({ page: 'grid' }, '', window.location.pathname);
     }
 
     function onPopState(e) {
