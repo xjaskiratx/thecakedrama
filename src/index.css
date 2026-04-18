@@ -892,6 +892,11 @@ header:hover {
     display: grid;
     place-items: center;
     padding: 20px;
+    animation: fadeIn 300ms ease forwards;
+}
+
+.modal-backdrop.exit {
+    animation: fadeOut 300ms ease forwards;
 }
 
 .modal {
@@ -904,6 +909,32 @@ header:hover {
     border: 1px solid rgba(255, 255, 255, 0.85);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
     padding: 16px;
+    transform-origin: center;
+    animation: modalBloomOut 400ms cubic-bezier(0.2, 0.8, 0.2, 1.1) forwards;
+}
+
+.modal.exit {
+    animation: modalBloomIn 300ms cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+@keyframes modalBloomOut {
+    0% { opacity: 0; transform: scale(0.9) translateY(10px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes modalBloomIn {
+    0% { opacity: 1; transform: scale(1) translateY(0); }
+    100% { opacity: 0; transform: scale(0.9) translateY(10px); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
 }
 
 .modal-title {

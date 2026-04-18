@@ -105,6 +105,7 @@ function App() {
   const [isToastExiting, setIsToastExiting] = useState(false);
   const toastTimerRef = useRef(null);
   const [redirectCountdown, setRedirectCountdown] = useState(null);
+  const [isRedirectModalExiting, setIsRedirectModalExiting] = useState(false);
   const redirectTimerRef = useRef(null);
 
   const [headerCookies, setHeaderCookies] = useState([
@@ -436,8 +437,13 @@ function App() {
         setRedirectCountdown(prev => {
           if (prev <= 1) {
             clearInterval(redirectTimerRef.current);
-            window.open(`https://www.instagram.com/${INSTAGRAM_PLACEHOLDER}/`, '_blank', 'noopener,noreferrer');
-            return null;
+            setIsRedirectModalExiting(true);
+            setTimeout(() => {
+              window.open(`https://www.instagram.com/${INSTAGRAM_PLACEHOLDER}/`, '_blank', 'noopener,noreferrer');
+              setRedirectCountdown(null);
+              setIsRedirectModalExiting(false);
+            }, 300); // Animation duration
+            return 0;
           }
           return prev - 1;
         });
@@ -769,15 +775,19 @@ function App() {
       ) : null}
 
       {redirectCountdown !== null ? (
-        <div className="modal-backdrop" role="dialog" aria-modal="true">
-          <div className="modal redirect-modal">
+        <div className={`modal-backdrop ${isRedirectModalExiting ? 'exit' : ''}`} role="dialog" aria-modal="true">
+          <div className={`modal redirect-modal ${isRedirectModalExiting ? 'exit' : ''}`}>
             <div className="redirect-icon">✨</div>
             <div className="modal-title">Order Copied!</div>
             <p className="modal-text">Opening Instagram in <strong>{redirectCountdown}s</strong>...</p>
             <p className="modal-hint">Paste the message in our DMs to confirm your order! 🍰</p>
             <button type="button" className="modal-btn" onClick={() => {
               clearInterval(redirectTimerRef.current);
-              setRedirectCountdown(null);
+              setIsRedirectModalExiting(true);
+              setTimeout(() => {
+                setRedirectCountdown(null);
+                setIsRedirectModalExiting(false);
+              }, 300);
             }}>Cancel</button>
           </div>
         </div>
