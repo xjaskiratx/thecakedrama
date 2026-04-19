@@ -391,7 +391,7 @@ header:hover {
     -webkit-overflow-scrolling: touch;
     flex: 1;
     min-height: 0;
-    padding: 0 20px 40px 20px;
+    padding: 10px 20px 40px 20px;
     width: 100%;
     margin: 0 auto;
     mask-image: linear-gradient(to bottom, transparent, black 15px, black calc(100% - 15px), transparent);
@@ -1014,7 +1014,7 @@ header:hover {
     background: var(--bg-color);
     color: var(--primary-color);
     text-align: center;
-    padding: 2px 0 10px 0;
+    padding: 8px 0 4px 0;
     font-size: 0.9rem;
     font-family: 'Afacad-SemiBold', sans-serif;
     z-index: 100;
