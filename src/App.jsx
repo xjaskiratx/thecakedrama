@@ -801,6 +801,10 @@ function App() {
           {toastMessage}
         </div>
       ) : null}
+
+      <footer className="footer-strip">
+        developed by <a href="https://jsx-studios.vercel.app" target="_blank" rel="noopener noreferrer">JSX Studios</a>
+      </footer>
     </div>
   )
 }

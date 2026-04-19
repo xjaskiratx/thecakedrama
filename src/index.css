@@ -741,7 +741,7 @@ header:hover {
 .toast {
     position: absolute;
     left: 50%;
-    bottom: 24px;
+    bottom: 80px;
     transform: translateX(-50%);
     z-index: 500;
     width: auto;
@@ -1007,4 +1007,29 @@ header:hover {
     .add-btn {
         transition: none;
     }
+}
+
+/* Footer Strip */
+.footer-strip {
+    background: #F3D5D5;
+    color: var(--primary-color);
+    text-align: center;
+    padding: 12px 0;
+    font-size: 1rem;
+    font-family: 'Afacad-SemiBold', sans-serif;
+    z-index: 100;
+    width: 100%;
+    flex-shrink: 0;
+    box-shadow: 0 -4px 15px rgba(152, 69, 125, 0.08);
+}
+
+.footer-strip a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+}
+
+.footer-strip a:hover {
+    opacity: 0.8;
 }
